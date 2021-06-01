@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import About from "../views/About";
 import Home from "../views/Home";
+import ShowCase from "../views/ShowCase";
 import UserHome from "../views/Users/UserHome";
 import UserPosts from "../views/Users/UserPosts";
 import UserAccount from "../views/Users/UserAccount";
@@ -10,7 +11,11 @@ let routes = [
   {
     path: "/",
     name: "Home",
-    component: Home,
+    // component: Home,
+    components: {
+      default: Home,
+      showCase: ShowCase,
+    },
   },
   {
     path: "/about",

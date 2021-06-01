@@ -1,9 +1,13 @@
 <template>
   <h1>User Profile</h1>
+  <posts-list></posts-list>
 </template>
 
 <script>
-export default {};
+import PostsList from "../../components/Posts/PostsList.vue";
+export default {
+  components: { PostsList },
+};
 </script>
 
 <style></style>

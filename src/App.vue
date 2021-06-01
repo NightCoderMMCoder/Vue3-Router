@@ -1,6 +1,10 @@
 <template>
   <navbar></navbar>
-  <router-view></router-view>
+  <!-- <show-case v-if="$route.name === 'Home'"></show-case> -->
+  <router-view name="showCase"></router-view>
+  <main class="container">
+    <router-view></router-view>
+  </main>
 </template>
 
 <script>
@@ -13,4 +17,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+main {
+  padding: 40px 0;
+}
+</style>
