@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import About from "../views/About";
 import Home from "../views/Home";
+import UserHome from "../views/Users/UserHome";
 
 let routes = [
   {
@@ -10,6 +11,10 @@ let routes = [
   {
     path: "/about",
     component: About,
+  },
+  {
+    path: "/user/:userId",
+    component: UserHome,
   },
 ];
 
