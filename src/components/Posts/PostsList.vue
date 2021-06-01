@@ -1,19 +1,12 @@
 <template>
   <h2 class="mb-3">{{ title }}</h2>
   <div class="row">
-    <post-item></post-item>
-    <post-item></post-item>
-    <post-item></post-item>
-    <post-item></post-item>
-    <post-item></post-item>
-    <post-item></post-item>
-    <post-item></post-item>
-    <post-item></post-item>
-    <post-item></post-item>
-    <post-item></post-item>
-    <post-item></post-item>
-    <post-item></post-item>
-    <post-item></post-item>
+    <post-item
+      v-for="post in posts"
+      :key="post.id"
+      :post="post"
+      :col="col"
+    ></post-item>
   </div>
 </template>
 
@@ -26,6 +19,8 @@ export default {
       type: String,
       default: "Uploaded Posts",
     },
+    posts: Array,
+    col: String,
   },
 };
 </script>

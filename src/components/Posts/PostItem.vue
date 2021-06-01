@@ -1,5 +1,5 @@
 <template>
-  <div class="col-12 col-md-6 col-lg-4 mb-3">
+  <div class="col-12 col-md-6 mb-3" :class="col">
     <div class="card">
       <img
         src="https://cdn.pixabay.com/photo/2015/02/02/11/09/office-620822__340.jpg"
@@ -7,10 +7,9 @@
         alt="image"
       />
       <div class="card-body">
-        <h5 class="card-title">Card title</h5>
+        <h5 class="card-title">{{ post.title }}</h5>
         <p class="card-text">
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
+          {{ post.body }}
         </p>
         <!-- <router-link to="/posts/afsddfas" class="btn btn-success"
           >View Details</router-link
@@ -26,10 +25,17 @@
 <script>
 import { useRouter } from "vue-router";
 export default {
-  setup() {
+  props: {
+    post: Object,
+    col: {
+      type: String,
+      default: "col-lg-6",
+    },
+  },
+  setup({ post }) {
     const router = useRouter();
     const viewDetails = () => {
-      router.push({ name: "PostDetails", params: { postId: "asfdafsd" } });
+      router.push({ name: "PostDetails", params: { postId: post.id } });
     };
     return { viewDetails };
   },
