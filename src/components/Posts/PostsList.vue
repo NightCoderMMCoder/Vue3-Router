@@ -5,6 +5,15 @@
     <post-item></post-item>
     <post-item></post-item>
     <post-item></post-item>
+    <post-item></post-item>
+    <post-item></post-item>
+    <post-item></post-item>
+    <post-item></post-item>
+    <post-item></post-item>
+    <post-item></post-item>
+    <post-item></post-item>
+    <post-item></post-item>
+    <post-item></post-item>
   </div>
 </template>
 
