@@ -1,5 +1,7 @@
 <template>
-  <posts-list title="My Posts"></posts-list>
+  <div>
+    <posts-list title="My Posts"></posts-list>
+  </div>
 </template>
 
 <script>

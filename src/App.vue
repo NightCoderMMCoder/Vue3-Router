@@ -1,9 +1,17 @@
 <template>
   <navbar></navbar>
   <!-- <show-case v-if="$route.name === 'Home'"></show-case> -->
-  <router-view name="showCase"></router-view>
+  <router-view v-slot="slotProps" name="showCase">
+    <transition name="page" mode="out-in">
+      <component :is="slotProps.Component"></component>
+    </transition>
+  </router-view>
   <main class="container">
-    <router-view></router-view>
+    <router-view v-slot="slotProps">
+      <transition name="page" mode="out-in">
+        <component :is="slotProps.Component"></component>
+      </transition>
+    </router-view>
   </main>
 </template>
 
@@ -20,5 +28,18 @@ export default {
 <style>
 main {
   padding: 40px 0;
+}
+.page-enter-from {
+  opacity: 0;
+  transform: translateY(-30px);
+}
+.page-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.3s linear;
 }
 </style>

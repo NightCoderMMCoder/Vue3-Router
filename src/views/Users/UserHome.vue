@@ -22,7 +22,11 @@
       </ul>
     </div>
     <div class="col-12 col-md-8">
-      <router-view></router-view>
+      <router-view v-slot="{ Component }">
+        <transition name="page" mode="out-in">
+          <component :is="Component"></component>
+        </transition>
+      </router-view>
     </div>
   </div>
 </template>

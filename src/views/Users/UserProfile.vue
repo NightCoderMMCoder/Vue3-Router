@@ -1,6 +1,8 @@
 <template>
-  <h1>User Profile</h1>
-  <posts-list></posts-list>
+  <div>
+    <h1>User Profile</h1>
+    <posts-list></posts-list>
+  </div>
 </template>
 
 <script>
