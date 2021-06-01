@@ -1,10 +1,15 @@
 <template>
-  <h1>App</h1>
+  <navbar></navbar>
+  <router-view></router-view>
 </template>
 
 <script>
+import Navbar from "./components/Layouts/Navbar.vue";
 export default {
   name: "App",
+  components: {
+    Navbar,
+  },
 };
 </script>
 
