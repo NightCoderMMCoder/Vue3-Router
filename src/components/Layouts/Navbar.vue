@@ -22,11 +22,12 @@
             <router-link class="nav-link" to="/about">About</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/user/554354"
+            <router-link class="nav-link" :to="`/user/${user.uid}`"
               >Profile</router-link
             >
           </li>
         </ul>
+        <h5 class="text-white mb-0 mx-3">{{ user.name }}</h5>
         <form class="d-flex">
           <input
             class="form-control me-2"
@@ -42,7 +43,15 @@
 </template>
 
 <script>
-export default {};
+export default {
+  setup() {
+    const user = {
+      name: "Aung Myat Oo",
+      uid: "adfsafdsafdsasdfasdf",
+    };
+    return { user };
+  },
+};
 </script>
 
 <style></style>

@@ -15,6 +15,7 @@ let routes = [
   {
     path: "/user/:userId",
     component: UserHome,
+    props: true,
   },
 ];
 
