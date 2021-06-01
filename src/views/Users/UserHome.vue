@@ -2,13 +2,21 @@
   <div class="row">
     <div class="col-12 col-md-4">
       <ul class="list-group">
-        <router-link class="list-group-item" :to="`/user/${userId}`">
+        <router-link
+          class="list-group-item"
+          :to="{ name: 'UserProfile', params: { userId } }"
+        >
           User Profile
         </router-link>
-        <router-link class="list-group-item" :to="`/user/${userId}/posts`"
+        <router-link
+          class="list-group-item"
+          :to="{ name: 'UserPosts', params: { userId } }"
           >User Posts</router-link
         >
-        <router-link class="list-group-item" :to="`/user/${userId}/account`">
+        <router-link
+          class="list-group-item"
+          :to="{ name: 'UserAccount', params: { userId } }"
+        >
           User Account
         </router-link>
       </ul>

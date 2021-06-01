@@ -9,12 +9,19 @@ import UserProfile from "../views/Users/UserProfile";
 let routes = [
   {
     path: "/",
+    name: "Home",
     component: Home,
   },
   {
     path: "/about",
+    name: "About",
     component: About,
+    alias: "/about-us",
   },
+  // {
+  //   path: "/about-us",
+  //   redirect: "/about",
+  // },
   {
     path: "/user/:userId",
     component: UserHome,
@@ -22,14 +29,17 @@ let routes = [
     children: [
       {
         path: "",
+        name: "UserProfile",
         component: UserProfile,
       },
       {
         path: "posts",
+        name: "UserPosts",
         component: UserPosts,
       },
       {
         path: "account",
+        name: "UserAccount",
         component: UserAccount,
       },
     ],
