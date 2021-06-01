@@ -6,6 +6,7 @@ import UserHome from "../views/Users/UserHome";
 import UserPosts from "../views/Users/UserPosts";
 import UserAccount from "../views/Users/UserAccount";
 import UserProfile from "../views/Users/UserProfile";
+import PostDetails from "../views/Posts/PostDetails.vue";
 
 let routes = [
   {
@@ -27,6 +28,11 @@ let routes = [
   //   path: "/about-us",
   //   redirect: "/about",
   // },
+  {
+    path: "/posts/:postId",
+    name: "PostDetails",
+    component: PostDetails,
+  },
   {
     path: "/user/:userId",
     component: UserHome,

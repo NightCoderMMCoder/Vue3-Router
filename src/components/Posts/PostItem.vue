@@ -12,14 +12,28 @@
           Some quick example text to build on the card title and make up the
           bulk of the card's content.
         </p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+        <!-- <router-link to="/posts/afsddfas" class="btn btn-success"
+          >View Details</router-link
+        > -->
+        <button class="btn btn-success" @click="viewDetails">
+          View Details
+        </button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+import { useRouter } from "vue-router";
+export default {
+  setup() {
+    const router = useRouter();
+    const viewDetails = () => {
+      router.push({ name: "PostDetails", params: { postId: "asfdafsd" } });
+    };
+    return { viewDetails };
+  },
+};
 </script>
 
 <style></style>
