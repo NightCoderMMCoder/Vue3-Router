@@ -1,13 +1,12 @@
 import { createRouter, createWebHistory } from "vue-router";
-import About from "../views/About";
-import Home from "../views/Home";
-import ShowCase from "../views/ShowCase";
-import UserHome from "../views/Users/UserHome";
-import UserPosts from "../views/Users/UserPosts";
-import UserAccount from "../views/Users/UserAccount";
-import UserProfile from "../views/Users/UserProfile";
-import PostDetails from "../views/Posts/PostDetails.vue";
-import Login from "../views/Auth/Login.vue";
+// import About from "../views/About";
+// import Home from "../views/Home";
+// import UserHome from "../views/Users/UserHome";
+// import UserPosts from "../views/Users/UserPosts";
+// import UserAccount from "../views/Users/UserAccount";
+// import UserProfile from "../views/Users/UserProfile";
+// import PostDetails from "../views/Posts/PostDetails.vue";
+// import Login from "../views/Auth/Login.vue";
 
 const requiresAuth = (_, _1, next) => {
   let user = localStorage.getItem("user");
@@ -32,10 +31,7 @@ let routes = [
     path: "/",
     name: "Home",
     // component: Home,
-    components: {
-      default: Home,
-      showCase: ShowCase,
-    },
+    component: () => import(/* webpackChunkName: "Home" */ "../views/Home"),
     meta: {
       title: "Home",
     },
@@ -43,7 +39,7 @@ let routes = [
   {
     path: "/about",
     name: "About",
-    component: About,
+    component: () => import(/* webpackChunkName: "about" */ "../views/About"),
     alias: "/about-us",
     meta: {
       title: "About",
@@ -56,7 +52,10 @@ let routes = [
   {
     path: "/posts/:postId",
     name: "PostDetails",
-    component: PostDetails,
+    component: () =>
+      import(
+        /* webpackChunkName: "PostDetails" */ "../views/Posts/PostDetails.vue"
+      ),
     // beforeEnter: requiresAuth,
     meta: {
       title: "PostDetails",
@@ -64,13 +63,16 @@ let routes = [
   },
   {
     path: "/user/:userId",
-    component: UserHome,
+    component: () => import("../views/Users/UserHome"),
     props: true,
     children: [
       {
         path: "",
         name: "UserProfile",
-        component: UserProfile,
+        component: () =>
+          import(
+            /* webpackChunkName: "UserProfile" */ "../views/Users/UserProfile"
+          ),
         meta: {
           title: "UserProfile",
         },
@@ -78,7 +80,10 @@ let routes = [
       {
         path: "posts",
         name: "UserPosts",
-        component: UserPosts,
+        component: () =>
+          import(
+            /* webpackChunkName: "UserPosts" */ "../views/Users/UserPosts"
+          ),
         meta: {
           title: "UserPosts",
         },
@@ -86,7 +91,10 @@ let routes = [
       {
         path: "account",
         name: "UserAccount",
-        component: UserAccount,
+        component: () =>
+          import(
+            /* webpackChunkName: "UserAccount" */ "../views/Users/UserAccount"
+          ),
         meta: {
           title: "UserAccount",
         },
@@ -100,7 +108,8 @@ let routes = [
   {
     path: "/login",
     name: "Login",
-    component: Login,
+    component: () =>
+      import(/* webpackChunkName: "Login" */ "../views/Auth/Login"),
     // beforeEnter: requiresGuest,
     meta: {
       requiresGuest: true,
