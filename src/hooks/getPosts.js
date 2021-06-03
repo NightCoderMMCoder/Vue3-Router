@@ -2,6 +2,7 @@ import { ref } from "vue";
 const useGetPosts = () => {
   const loading = ref(false);
   const posts = ref([]);
+  const lastPage = ref(0);
   const getPosts = (page) => {
     loading.value = true;
     fetch("https://jsonplaceholder.typicode.com/posts?_page=" + page)
@@ -11,7 +12,16 @@ const useGetPosts = () => {
         loading.value = false;
       });
   };
-  return { posts, loading, getPosts };
+  const getAllPosts = (page) => {
+    loading.value = true;
+    fetch("https://jsonplaceholder.typicode.com/posts")
+      .then((res) => res.json())
+      .then((data) => {
+        lastPage.value = Math.ceil(data.length / 10);
+        loading.value = false;
+      });
+  };
+  return { posts, loading, getPosts, lastPage, getAllPosts };
 };
 
 export default useGetPosts;

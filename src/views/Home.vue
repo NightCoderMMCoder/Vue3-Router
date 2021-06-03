@@ -2,7 +2,12 @@
   <div>
     <h1 v-if="loading">Loading...</h1>
     <posts-list :posts="posts" col="col-lg-4" v-else></posts-list>
-    <Pagination @nex-posts="nexPosts" @prev-posts="prevPosts" />
+    <Pagination
+      @nex-posts="nexPosts"
+      @prev-posts="prevPosts"
+      :page="page"
+      :last-page="lastPage"
+    />
   </div>
 </template>
 
@@ -18,8 +23,9 @@ export default {
     const router = useRouter();
     const route = useRoute();
     const query = route.query.page;
-    const page = ref(query ? query : 1);
-    const { posts, getPosts, loading } = useGetPosts();
+    const page = ref(query ? +query : 1);
+    const { posts, getPosts, loading, getAllPosts, lastPage } = useGetPosts();
+    getAllPosts();
 
     watch(
       page,
@@ -40,7 +46,7 @@ export default {
       page.value--;
       router.push({ name: "Home", query: { page: page.value } });
     };
-    return { posts, nexPosts, prevPosts, loading };
+    return { posts, nexPosts, prevPosts, loading, lastPage, page };
   },
 };
 </script>

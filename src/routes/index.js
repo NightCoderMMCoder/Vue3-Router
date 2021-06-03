@@ -62,12 +62,12 @@ let router = createRouter({
   routes,
   linkActiveClass: "act",
   linkExactActiveClass: "exact",
-  scrollBehavior(_, _1, savedPosition) {
-    if (savedPosition) {
-      return savedPosition;
-    }
-    return { top: 0 };
-  },
+  // scrollBehavior(_, _1, savedPosition) {
+  //   if (savedPosition) {
+  //     return savedPosition;
+  //   }
+  //   return { top: 0 };
+  // },
 });
 
 export default router;
