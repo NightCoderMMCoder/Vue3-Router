@@ -1,32 +1,34 @@
 <template>
-  <div class="row">
-    <div class="col-12 col-md-4">
-      <ul class="list-group">
-        <router-link
-          class="list-group-item"
-          :to="{ name: 'UserProfile', params: { userId } }"
-        >
-          User Profile
-        </router-link>
-        <router-link
-          class="list-group-item"
-          :to="{ name: 'UserPosts', params: { userId } }"
-          >User Posts</router-link
-        >
-        <router-link
-          class="list-group-item"
-          :to="{ name: 'UserAccount', params: { userId } }"
-        >
-          User Account
-        </router-link>
-      </ul>
-    </div>
-    <div class="col-12 col-md-8">
-      <router-view v-slot="{ Component }">
-        <transition name="page" mode="out-in">
-          <component :is="Component"></component>
-        </transition>
-      </router-view>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-4">
+        <ul class="list-group">
+          <router-link
+            class="list-group-item"
+            :to="{ name: 'UserProfile', params: { userId } }"
+          >
+            User Profile
+          </router-link>
+          <router-link
+            class="list-group-item"
+            :to="{ name: 'UserPosts', params: { userId } }"
+            >User Posts</router-link
+          >
+          <router-link
+            class="list-group-item"
+            :to="{ name: 'UserAccount', params: { userId } }"
+          >
+            User Account
+          </router-link>
+        </ul>
+      </div>
+      <div class="col-12 col-md-8">
+        <router-view v-slot="{ Component }">
+          <transition name="page" mode="out-in">
+            <component :is="Component"></component>
+          </transition>
+        </router-view>
+      </div>
     </div>
   </div>
 </template>

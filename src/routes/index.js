@@ -36,12 +36,18 @@ let routes = [
       default: Home,
       showCase: ShowCase,
     },
+    meta: {
+      title: "Home",
+    },
   },
   {
     path: "/about",
     name: "About",
     component: About,
     alias: "/about-us",
+    meta: {
+      title: "About",
+    },
   },
   // {
   //   path: "/about-us",
@@ -52,6 +58,9 @@ let routes = [
     name: "PostDetails",
     component: PostDetails,
     // beforeEnter: requiresAuth,
+    meta: {
+      title: "PostDetails",
+    },
   },
   {
     path: "/user/:userId",
@@ -62,16 +71,25 @@ let routes = [
         path: "",
         name: "UserProfile",
         component: UserProfile,
+        meta: {
+          title: "UserProfile",
+        },
       },
       {
         path: "posts",
         name: "UserPosts",
         component: UserPosts,
+        meta: {
+          title: "UserPosts",
+        },
       },
       {
         path: "account",
         name: "UserAccount",
         component: UserAccount,
+        meta: {
+          title: "UserAccount",
+        },
       },
     ],
     // beforeEnter: requiresAuth,
@@ -86,6 +104,7 @@ let routes = [
     // beforeEnter: requiresGuest,
     meta: {
       requiresGuest: true,
+      title: "Login",
     },
   },
 ];
@@ -104,6 +123,7 @@ let router = createRouter({
 });
 
 router.beforeEach((to, _, next) => {
+  document.title = to.meta.title;
   let user = localStorage.getItem("user");
   if (to.matched.some((record) => record.meta.requiresAuth)) {
     if (user === "null") {

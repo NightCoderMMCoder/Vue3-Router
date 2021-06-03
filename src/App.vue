@@ -1,12 +1,12 @@
 <template>
   <navbar></navbar>
   <!-- <show-case v-if="$route.name === 'Home'"></show-case> -->
-  <router-view v-slot="slotProps" name="showCase">
+  <!-- <router-view v-slot="slotProps" name="showCase">
     <transition name="page" mode="out-in">
       <component :is="slotProps.Component"></component>
     </transition>
-  </router-view>
-  <main class="container">
+  </router-view> -->
+  <main>
     <router-view v-slot="slotProps">
       <transition name="page" mode="out-in">
         <component :is="slotProps.Component"></component>
@@ -26,7 +26,7 @@ export default {
 </script>
 
 <style>
-main {
+main > div {
   padding: 40px 0;
 }
 .page-enter-from {

@@ -1,8 +1,15 @@
 <template>
-  <form @submit.prevent="handleSubmit">
-    <input type="text" v-model="name" class="form-control" placeholder="Name" />
-    <button class="btn btn-primary mt-3" type="submit">Login</button>
-  </form>
+  <div class="container">
+    <form @submit.prevent="handleSubmit">
+      <input
+        type="text"
+        v-model="name"
+        class="form-control"
+        placeholder="Name"
+      />
+      <button class="btn btn-primary mt-3" type="submit">Login</button>
+    </form>
+  </div>
 </template>
 
 <script>
