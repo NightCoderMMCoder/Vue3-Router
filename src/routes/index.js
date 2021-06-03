@@ -51,7 +51,7 @@ let routes = [
     path: "/posts/:postId",
     name: "PostDetails",
     component: PostDetails,
-    beforeEnter: requiresAuth,
+    // beforeEnter: requiresAuth,
   },
   {
     path: "/user/:userId",
@@ -74,13 +74,19 @@ let routes = [
         component: UserAccount,
       },
     ],
-    beforeEnter: requiresAuth,
+    // beforeEnter: requiresAuth,
+    meta: {
+      requiresAuth: true,
+    },
   },
   {
     path: "/login",
     name: "Login",
     component: Login,
-    beforeEnter: requiresGuest,
+    // beforeEnter: requiresGuest,
+    meta: {
+      requiresGuest: true,
+    },
   },
 ];
 
@@ -95,6 +101,25 @@ let router = createRouter({
   //   }
   //   return { top: 0 };
   // },
+});
+
+router.beforeEach((to, _, next) => {
+  let user = localStorage.getItem("user");
+  if (to.matched.some((record) => record.meta.requiresAuth)) {
+    if (user === "null") {
+      next("/");
+    } else {
+      next();
+    }
+  } else if (to.matched.some((record) => record.meta.requiresGuest)) {
+    if (user === "null") {
+      next();
+    } else {
+      next("/");
+    }
+  } else {
+    next();
+  }
 });
 
 export default router;
