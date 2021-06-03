@@ -1,18 +1,36 @@
 <template>
   <div>
     <h1>User Profile</h1>
-    <posts-list :posts="posts"></posts-list>
+    <h1 v-if="loading">Loading...</h1>
+    <posts-list :posts="posts" v-else></posts-list>
+    <Pagination
+      @nex-posts="nexPosts"
+      @prev-posts="prevPosts"
+      :page="page"
+      :last-page="lastPage"
+    />
   </div>
 </template>
 
 <script>
-import useGetPosts from "../../hooks/getPosts";
+import { useRoute } from "vue-router";
+import Pagination from "../../components/Posts/Pagination.vue";
 import PostsList from "../../components/Posts/PostsList.vue";
+import usePagination from "../../hooks/pagination";
 export default {
-  components: { PostsList },
+  components: { PostsList, Pagination },
   setup() {
-    const { posts } = useGetPosts();
-    return { posts };
+    const route = useRoute();
+    const {
+      posts,
+      nexPosts,
+      prevPosts,
+      loading,
+      lastPage,
+      page,
+    } = usePagination("UserPosts", { userId: route.params.userId });
+
+    return { posts, nexPosts, prevPosts, loading, lastPage, page };
   },
 };
 </script>

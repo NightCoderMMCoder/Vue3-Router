@@ -12,40 +12,21 @@
 </template>
 
 <script>
-import { ref, watch } from "vue";
-import { useRoute, useRouter } from "vue-router";
-import useGetPosts from "../hooks/getPosts";
 import PostsList from "../components/Posts/PostsList.vue";
 import Pagination from "../components/Posts/Pagination.vue";
+import usePagination from "../hooks/pagination";
 export default {
   components: { PostsList, Pagination },
   setup() {
-    const router = useRouter();
-    const route = useRoute();
-    const query = route.query.page;
-    const page = ref(query ? +query : 1);
-    const { posts, getPosts, loading, getAllPosts, lastPage } = useGetPosts();
-    getAllPosts();
-
-    watch(
+    const {
+      posts,
+      nexPosts,
+      prevPosts,
+      loading,
+      lastPage,
       page,
-      (val) => {
-        if (val) {
-          getPosts(val);
-        }
-      },
-      { immediate: true }
-    );
+    } = usePagination("Home");
 
-    const nexPosts = () => {
-      page.value++;
-      router.push({ name: "Home", query: { page: page.value } });
-    };
-
-    const prevPosts = () => {
-      page.value--;
-      router.push({ name: "Home", query: { page: page.value } });
-    };
     return { posts, nexPosts, prevPosts, loading, lastPage, page };
   },
 };

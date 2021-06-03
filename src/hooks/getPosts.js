@@ -12,7 +12,7 @@ const useGetPosts = () => {
         loading.value = false;
       });
   };
-  const getAllPosts = (page) => {
+  const getAllPosts = (page = 1) => {
     loading.value = true;
     fetch("https://jsonplaceholder.typicode.com/posts")
       .then((res) => res.json())
