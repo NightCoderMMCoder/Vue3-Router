@@ -7,7 +7,7 @@
         alt="image"
       />
       <div class="card-body">
-        <h5 class="card-title">{{ post.title }}</h5>
+        <h5 class="card-title">({{ post.id }}) {{ post.title }}</h5>
         <p class="card-text">
           {{ post.body }}
         </p>
