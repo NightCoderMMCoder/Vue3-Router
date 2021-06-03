@@ -7,6 +7,25 @@ import UserPosts from "../views/Users/UserPosts";
 import UserAccount from "../views/Users/UserAccount";
 import UserProfile from "../views/Users/UserProfile";
 import PostDetails from "../views/Posts/PostDetails.vue";
+import Login from "../views/Auth/Login.vue";
+
+const requiresAuth = (_, _1, next) => {
+  let user = localStorage.getItem("user");
+  if (user === "null") {
+    next("/");
+  } else {
+    next();
+  }
+};
+const requiresGuest = (_, _1, next) => {
+  let user = localStorage.getItem("user");
+  console.log(typeof user);
+  if (user !== "null") {
+    next("/");
+  } else {
+    next();
+  }
+};
 
 let routes = [
   {
@@ -32,6 +51,7 @@ let routes = [
     path: "/posts/:postId",
     name: "PostDetails",
     component: PostDetails,
+    beforeEnter: requiresAuth,
   },
   {
     path: "/user/:userId",
@@ -54,6 +74,13 @@ let routes = [
         component: UserAccount,
       },
     ],
+    beforeEnter: requiresAuth,
+  },
+  {
+    path: "/login",
+    name: "Login",
+    component: Login,
+    beforeEnter: requiresGuest,
   },
 ];
 
